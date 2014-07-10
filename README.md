@@ -24,21 +24,22 @@ Include the recipe `checkinstall` somewhere in your run list, then use the LWRPs
 
 Defines wrapper for configure/make/checkinstall chain of commands.
 Example (with full attributes list):
-  checkinstall_package "strongswan" do
-    source_archive "/var/chef/cache/strongswan-5.1.3.tar.bz2"
-    #source_dir "/var/chef/cache/strongswan-5.1.3"
-    configure_options "--enable-xauth-eap --enable-eap-tls --enable-eap-radius"
-    version "5.1.3"
-    binary_name "ipsec"
-    #options "-y"
-    #binary_location "/usr/local/sbin/ipsec"
-    #cmake false
-    #autoconf false
-    #autoheader false
-    #make true
-    #configure true
-    #checkinstall true
-  end
+
+    checkinstall_package "strongswan" do
+      source_archive "/var/chef/cache/strongswan-5.1.3.tar.bz2"
+      #source_dir "/var/chef/cache/strongswan-5.1.3"
+      configure_options "--enable-xauth-eap --enable-eap-tls --enable-eap-radius"
+      version "5.1.3"
+      binary_name "ipsec"
+      #options "-y"
+      #binary_location "/usr/local/sbin/ipsec"
+      #cmake false
+      #autoconf false
+      #autoheader false
+      #make true
+      #configure true
+      #checkinstall true
+    end
 
 Requires `source_archive` OR `source_dir` attribute, other attributes are optional.
 * `source_archive`
