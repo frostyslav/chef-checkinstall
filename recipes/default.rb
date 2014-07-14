@@ -26,7 +26,7 @@ when "debian", "ubuntu"
     end
   end
 when "redhat", "centos", "amazon", "scientific"
-  %w{make cmake gcc gcc-c++ rpm-build autoconf}.each do |pkg|
+  %w{make cmake gcc gcc-c++ rpm-build rpmdevtools autoconf}.each do |pkg|
     package pkg do
       action :install
     end
@@ -39,10 +39,9 @@ when "redhat", "centos", "amazon", "scientific"
     source "#{Chef::Config['file_cache_path']}/checkinstall.rpm"
     action :install
   end
-  # Fix checkinstall issues
-  directory "/root/rpmbuild/SOURCES" do
-    owner "root"
-    group "root"
-    mode 00755
+  execute "create directory structure for RPM build" do
+    command "rpmdev-setuptree"
+    Chef::Log.info "Create directory structure for RPM build"
+    not_if { ::File.directory?("/root/rpmbuild/SOURCES") }
   end
 end
