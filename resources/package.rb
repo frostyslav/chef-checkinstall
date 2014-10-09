@@ -34,5 +34,6 @@ attribute :autoheader, :kind_of => [TrueClass, FalseClass], :default => false
 attribute :autoconf, :kind_of => [TrueClass, FalseClass], :default => false
 attribute :configure, :kind_of => [TrueClass, FalseClass], :default => true
 attribute :make, :kind_of => [TrueClass, FalseClass], :default => true
+attribute :make_options, :kind_of => [String, NilClass], :regex => /.*/, :default => ""
 attribute :checkinstall, :kind_of => [TrueClass, FalseClass], :default => true
 attribute :cmake, :kind_of => [TrueClass, FalseClass], :default => false
