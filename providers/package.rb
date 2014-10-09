@@ -73,6 +73,12 @@ action :package do
       configure_options = new_resource.configure_options
     end
 
+    if new_resource.make_options.kind_of?(Array)
+      make_options = new_resource.make_options.join(' ')
+    else
+      make_options = new_resource.make_options
+    end
+
     execute "configure #{new_resource.package_name} with cmake" do
       cwd source_dir
       command "cmake #{configure_options}"
@@ -91,7 +97,7 @@ action :package do
 
     execute "compile #{new_resource.package_name}" do
       cwd source_dir
-      command "make"
+      command "make #{make_options}"
       Chef::Log.info "Compile #{new_resource.package_name}"
       new_resource.updated_by_last_action(true)
       only_if { new_resource.make }
